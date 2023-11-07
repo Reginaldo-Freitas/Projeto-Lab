@@ -163,8 +163,10 @@ JOptionPane.showMessageDialog(null, e);
         btnPesqProf = new javax.swing.JButton();
         btnAttProf = new javax.swing.JButton();
         btnDeleteProf = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Professores");
 
         jPanel1.setBackground(new java.awt.Color(42, 48, 56));
 
@@ -282,6 +284,7 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnAddProf.setBackground(new java.awt.Color(109, 203, 230));
         btnAddProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/addprof.png"))); // NOI18N
         btnAddProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +292,7 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnPesqProf.setBackground(new java.awt.Color(109, 203, 230));
         btnPesqProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/pesqprof.png"))); // NOI18N
         btnPesqProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +300,7 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnAttProf.setBackground(new java.awt.Color(109, 203, 230));
         btnAttProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/attprof.png"))); // NOI18N
         btnAttProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +308,7 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnDeleteProf.setBackground(new java.awt.Color(109, 203, 230));
         btnDeleteProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/deleteprof.png"))); // NOI18N
         btnDeleteProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,10 +316,34 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(109, 203, 230));
+        btnVoltar.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        btnVoltar.setText("VOLTAR");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 78, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAddProf)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPesqProf)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAttProf)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteProf))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(72, 72, 72))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -346,28 +376,18 @@ JOptionPane.showMessageDialog(null, e);
                         .addComponent(txtProfessorPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 78, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAddProf)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPesqProf)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAttProf)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDeleteProf))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(72, 72, 72))
+                        .addContainerGap()
+                        .addComponent(btnVoltar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
+                .addComponent(btnVoltar)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -393,9 +413,9 @@ JOptionPane.showMessageDialog(null, e);
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -412,14 +432,14 @@ JOptionPane.showMessageDialog(null, e);
                                 .addComponent(btnPesqProf)
                                 .addGap(1, 1, 1))))
                     .addComponent(btnDeleteProf))
-                .addGap(142, 142, 142))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,6 +447,7 @@ JOptionPane.showMessageDialog(null, e);
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -482,6 +503,12 @@ JOptionPane.showMessageDialog(null, e);
         pesquisar_professor();
     }//GEN-LAST:event_txtProfessorPesquisarKeyReleased
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaInicial inicial = new TelaInicial();
+        inicial.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -522,6 +549,7 @@ JOptionPane.showMessageDialog(null, e);
     private javax.swing.JButton btnAttProf;
     private javax.swing.JButton btnDeleteProf;
     private javax.swing.JButton btnPesqProf;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
