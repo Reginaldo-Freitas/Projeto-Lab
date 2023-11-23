@@ -22,6 +22,8 @@ ResultSet rs = null; //exibe o resultado da conexão
         conexao = Conexao.conector(); //CHAMANDO O MÉTODO CONECTOR
     }
     
+    
+    
     private void adicionarAluno(){
 String sql ="insert into alunos(Matrícula, Nome, Idade, Série, Email, Senha) values(?,?,?,?,?,?)";
 try {
@@ -126,6 +128,20 @@ JOptionPane.showMessageDialog(null, e);
 }
 }
 
+    private void mais_informacoes() {
+        String sql = "select * from disciplinas Where Aluno like ? order by disciplinas.Disciplina;";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtNome.getText() + "%");
+            rs = pst.executeQuery();
+            tabAlunos.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,6 +175,7 @@ JOptionPane.showMessageDialog(null, e);
         btnAttAluno = new javax.swing.JButton();
         btnDeleteAluno = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        btnMaisInformacoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alunos");
@@ -246,6 +263,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnAddAluno.setBackground(new java.awt.Color(109, 203, 230));
         btnAddAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/addaluno.png"))); // NOI18N
+        btnAddAluno.setToolTipText("Adicionar aluno");
         btnAddAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddAlunoActionPerformed(evt);
@@ -254,6 +272,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnPesqAluno.setBackground(new java.awt.Color(109, 203, 230));
         btnPesqAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/pesqaluno.png"))); // NOI18N
+        btnPesqAluno.setToolTipText("Consultar aluno");
         btnPesqAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesqAlunoActionPerformed(evt);
@@ -262,6 +281,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnAttAluno.setBackground(new java.awt.Color(109, 203, 230));
         btnAttAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/attaluno.png"))); // NOI18N
+        btnAttAluno.setToolTipText("Atualizar aluno");
         btnAttAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAttAlunoActionPerformed(evt);
@@ -270,6 +290,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnDeleteAluno.setBackground(new java.awt.Color(109, 203, 230));
         btnDeleteAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/deletealuno.png"))); // NOI18N
+        btnDeleteAluno.setToolTipText("Excluir aluno");
         btnDeleteAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteAlunoActionPerformed(evt);
@@ -285,10 +306,27 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
+        btnMaisInformacoes.setBackground(new java.awt.Color(109, 203, 230));
+        btnMaisInformacoes.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        btnMaisInformacoes.setForeground(new java.awt.Color(0, 0, 0));
+        btnMaisInformacoes.setText("Mais informações");
+        btnMaisInformacoes.setToolTipText("Mostra as notas do aluno");
+        btnMaisInformacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaisInformacoesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 157, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -317,11 +355,6 @@ JOptionPane.showMessageDialog(null, e);
                         .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,7 +365,7 @@ JOptionPane.showMessageDialog(null, e);
                         .addGap(141, 141, 141)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(txtAlunoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAlunoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -344,8 +377,11 @@ JOptionPane.showMessageDialog(null, e);
                         .addGap(18, 18, 18)
                         .addComponent(btnAttAluno)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDeleteAluno)))
-                .addGap(78, 78, 78))
+                        .addComponent(btnDeleteAluno))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(btnMaisInformacoes)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +413,7 @@ JOptionPane.showMessageDialog(null, e);
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -399,7 +435,9 @@ JOptionPane.showMessageDialog(null, e);
                     .addComponent(txtAlunoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMaisInformacoes)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddAluno)
                     .addComponent(btnPesqAluno)
@@ -448,6 +486,11 @@ JOptionPane.showMessageDialog(null, e);
         removerAluno();
     }//GEN-LAST:event_btnDeleteAlunoActionPerformed
 
+    private void btnMaisInformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisInformacoesActionPerformed
+        // TODO add your handling code here:
+        mais_informacoes();
+    }//GEN-LAST:event_btnMaisInformacoesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -457,6 +500,7 @@ JOptionPane.showMessageDialog(null, e);
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -487,6 +531,7 @@ JOptionPane.showMessageDialog(null, e);
     private javax.swing.JButton btnAddAluno;
     private javax.swing.JButton btnAttAluno;
     private javax.swing.JButton btnDeleteAluno;
+    private javax.swing.JButton btnMaisInformacoes;
     private javax.swing.JButton btnPesqAluno;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
