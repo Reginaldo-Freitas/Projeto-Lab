@@ -32,7 +32,7 @@ public class TelaInicial extends javax.swing.JFrame {
         btnProfessores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tela inicial");
+        setTitle("Início ");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(42, 48, 56));

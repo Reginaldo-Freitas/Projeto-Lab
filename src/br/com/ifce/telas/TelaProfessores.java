@@ -167,6 +167,7 @@ JOptionPane.showMessageDialog(null, e);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Professores");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(42, 48, 56));
 
@@ -229,7 +230,7 @@ JOptionPane.showMessageDialog(null, e);
         );
 
         jLabel5.setBackground(new java.awt.Color(109, 203, 230));
-        jLabel5.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(109, 203, 230));
         jLabel5.setText("PROFESSORES");
 
@@ -286,6 +287,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnAddProf.setBackground(new java.awt.Color(109, 203, 230));
         btnAddProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/addprof.png"))); // NOI18N
+        btnAddProf.setToolTipText("Adicionar professor");
         btnAddProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddProfActionPerformed(evt);
@@ -294,6 +296,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnPesqProf.setBackground(new java.awt.Color(109, 203, 230));
         btnPesqProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/pesqprof.png"))); // NOI18N
+        btnPesqProf.setToolTipText("Consultar professor");
         btnPesqProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesqProfActionPerformed(evt);
@@ -302,6 +305,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnAttProf.setBackground(new java.awt.Color(109, 203, 230));
         btnAttProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/attprof.png"))); // NOI18N
+        btnAttProf.setToolTipText("Atualizar professor");
         btnAttProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAttProfActionPerformed(evt);
@@ -310,6 +314,7 @@ JOptionPane.showMessageDialog(null, e);
 
         btnDeleteProf.setBackground(new java.awt.Color(109, 203, 230));
         btnDeleteProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/deleteprof.png"))); // NOI18N
+        btnDeleteProf.setToolTipText("Excluir professor");
         btnDeleteProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteProfActionPerformed(evt);
