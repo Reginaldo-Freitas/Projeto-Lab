@@ -27,7 +27,7 @@ ResultSet rs = null; //exibe o resultado da conexão
     }
 
         private void adicionarNota(){
-String sql ="INSERT INTO disciplinas2 (ID, aluno, Disciplina, professor, nota1, nota2, nota3, faltas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+String sql ="INSERT INTO disciplinas2 (ID, aluno, Disciplina, professor, nota1, nota2, nota3, faltas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 try {
 pst=conexao.prepareStatement(sql);
 pst.setString(1,txtID.getText());
@@ -40,7 +40,7 @@ pst.setString(7,txtNota3.getText());
 pst.setString(8, txtFaltas.getText());
 int adicionado = pst.executeUpdate();
 if(adicionado >0){
-JOptionPane.showMessageDialog(null,"Aluno cadastrado com sucesso");
+JOptionPane.showMessageDialog(null,"Nota Cadastrado");
 txtID.setText(null);
 txtAluno.setText(null);
 txtDisciplina.setText(null);
@@ -105,14 +105,14 @@ JOptionPane.showMessageDialog(null, e);
 String sql ="update disciplinas2 set aluno=?, Disciplina=?, professor=?, nota1=?, nota2=?, nota3=?, faltas=? where ID=?";
 try {
 pst=conexao.prepareStatement(sql);
-pst.setString(1,txtID.getText());
-pst.setString(2,txtAluno.getText());
-pst.setString(3,txtDisciplina.getText());
-pst.setString(4,txtProfessor.getText());
-pst.setString(5,txtNota1.getText());
-pst.setString(6,txtNota2.getText());
-pst.setString(7,txtNota3.getText());
-pst.setString(8, txtFaltas.getText());
+pst.setString(1,txtAluno.getText());
+pst.setString(2,txtDisciplina.getText());
+pst.setString(3,txtProfessor.getText());
+pst.setString(4,txtNota1.getText());
+pst.setString(5,txtNota2.getText());
+pst.setString(6,txtNota3.getText());
+pst.setString(7,txtFaltas.getText());
+pst.setString(8, txtID.getText());
 int adicionado = pst.executeUpdate();
 if(adicionado >0){
 JOptionPane.showMessageDialog(null,"Nota alterada com sucesso");
@@ -131,7 +131,7 @@ JOptionPane.showMessageDialog(null, e);
 }
    
    private void pesquisar_nota(){
-String sql= "select     d.id, a.nome, d.disciplina,  p.nome,  d.nota1,  d.nota2,  d.nota3, d.faltas from disciplinas2 as d inner join alunos as a on d.aluno = a.matrícula inner join professores as p on d.professor = p.id Where Disciplina like ?";
+String sql= "select     d.id, a.nome, d.disciplina,  p.nome,  d.nota1,  d.nota2,  d.nota3, d.faltas from disciplinas2 as d inner join alunos as a on d.aluno = a.matricula inner join professores as p on d.professor = p.id Where a.nome like ?";
 try {
 pst = conexao.prepareStatement(sql);
 pst.setString(1, txtNotaPesquisar.getText() + "%");
@@ -175,10 +175,10 @@ JOptionPane.showMessageDialog(null, e);
         txtNotaPesquisar = new javax.swing.JTextField();
         btnAddNota = new javax.swing.JButton();
         btnPesqNota = new javax.swing.JButton();
-        btnAttNota = new javax.swing.JButton();
         btnDeleteNota = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        btnAlterarNota = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mais informações");
@@ -333,15 +333,6 @@ JOptionPane.showMessageDialog(null, e);
             }
         });
 
-        btnAttNota.setBackground(new java.awt.Color(109, 203, 230));
-        btnAttNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/attDisc.png"))); // NOI18N
-        btnAttNota.setToolTipText("Atualizar nota");
-        btnAttNota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAttNotaActionPerformed(evt);
-            }
-        });
-
         btnDeleteNota.setBackground(new java.awt.Color(109, 203, 230));
         btnDeleteNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/removerDisc.png"))); // NOI18N
         btnDeleteNota.setToolTipText("Excluir nota");
@@ -359,6 +350,14 @@ JOptionPane.showMessageDialog(null, e);
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
+            }
+        });
+
+        btnAlterarNota.setBackground(new java.awt.Color(109, 203, 230));
+        btnAlterarNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifce/icones/attDisc.png"))); // NOI18N
+        btnAlterarNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarNotaActionPerformed(evt);
             }
         });
 
@@ -421,8 +420,8 @@ JOptionPane.showMessageDialog(null, e);
                                     .addGap(18, 18, 18)
                                     .addComponent(btnPesqNota)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnAttNota)
-                                    .addGap(18, 18, 18)
+                                    .addComponent(btnAlterarNota)
+                                    .addGap(21, 21, 21)
                                     .addComponent(btnDeleteNota))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -437,7 +436,7 @@ JOptionPane.showMessageDialog(null, e);
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVoltar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -474,12 +473,12 @@ JOptionPane.showMessageDialog(null, e);
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPesqNota, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAddNota, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAttNota, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDeleteNota, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(39, 39, 39))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPesqNota)
+                    .addComponent(btnAddNota)
+                    .addComponent(btnDeleteNota)
+                    .addComponent(btnAlterarNota))
+                .addGap(66, 66, 66))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -490,7 +489,7 @@ JOptionPane.showMessageDialog(null, e);
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, Short.MAX_VALUE)
         );
 
         pack();
@@ -500,10 +499,6 @@ JOptionPane.showMessageDialog(null, e);
     private void btnDeleteNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteNotaActionPerformed
            removerNota();
     }//GEN-LAST:event_btnDeleteNotaActionPerformed
-
-    private void btnAttNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttNotaActionPerformed
-           alterarNota();
-    }//GEN-LAST:event_btnAttNotaActionPerformed
 
     private void btnPesqNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNotaActionPerformed
            consultarNotas();
@@ -555,6 +550,10 @@ JOptionPane.showMessageDialog(null, e);
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
+    private void btnAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarNotaActionPerformed
+         alterarNota();    // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarNotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -592,7 +591,7 @@ JOptionPane.showMessageDialog(null, e);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNota;
-    private javax.swing.JButton btnAttNota;
+    private javax.swing.JButton btnAlterarNota;
     private javax.swing.JButton btnDeleteNota;
     private javax.swing.JButton btnPesqNota;
     private javax.swing.JButton btnVoltar;

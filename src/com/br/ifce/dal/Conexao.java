@@ -11,7 +11,7 @@ java.sql.Connection conexao = null; //variável com nome de: conexao
 String driver = "com.mysql.jdbc.Driver"; //chamando o driver
 String url="jdbc:mysql://localhost:3306/escola"; //Armazenando informações referente ao banco
 String user="root";
-String password ="My123Sql123@";
+String password ="Tabaco123*";
        try {
 Class.forName(driver); //tratamento de conexão ao banco de dados
 conexao = DriverManager.getConnection(url, user, password);

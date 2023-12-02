@@ -39,7 +39,7 @@ pst.setString(5,txtEmail.getText());
 pst.setString(6, txtSenha.getText());
 int adicionado = pst.executeUpdate();
 if(adicionado >0){
-JOptionPane.showMessageDialog(null,"Aluno cadastrado com sucesso");
+JOptionPane.showMessageDialog(null,"Professor cadastrado com sucesso");
 txtID.setText(null);
 txtNome.setText(null);
 txtIdade.setText(null);

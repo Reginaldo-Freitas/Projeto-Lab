@@ -25,7 +25,7 @@ ResultSet rs = null; //exibe o resultado da conexão
     
     
     private void adicionarAluno(){
-String sql ="insert into alunos(Matrícula, Nome, Idade, Série, Email, Senha) values(?,?,?,?,?,?)";
+String sql ="insert into alunos(Matricula, Nome, Idade, Serie, Email, Senha) values(?,?,?,?,?,?)";
 try {
 pst=conexao.prepareStatement(sql);
 pst.setString(1,txtMatricula.getText());
@@ -50,7 +50,7 @@ JOptionPane.showMessageDialog(null, e);
 }
     
     private void consultarAluno(){
-    String sql ="select * from alunos where Matrícula=?";
+    String sql ="select * from alunos where Matricula=?";
     try {
     pst=conexao.prepareStatement(sql);
     pst.setString(1,txtMatricula.getText());
@@ -77,7 +77,7 @@ JOptionPane.showMessageDialog(null, e);
     private void removerAluno(){
 int confirma=JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este aluno?","Atenção", JOptionPane.YES_NO_OPTION);
 if(confirma==JOptionPane.YES_OPTION){
-String sql="delete from alunos where Matrícula=?";
+String sql="delete from alunos where Matricula=?";
 try {
 pst=conexao.prepareStatement(sql);
 pst.setString(1,txtMatricula.getText());
@@ -92,7 +92,7 @@ JOptionPane.showMessageDialog(null, e);
 }
     
     private void alterarAluno(){
-String sql ="update alunos set Nome=?, Idade=?, Série=?, Email=?, Senha=? where Matrícula=?";
+String sql ="update alunos set Nome=?, Idade=?, Serie=?, Email=?, Senha=? where Matricula=?";
 try {
 pst=conexao.prepareStatement(sql);
 pst.setString(1,txtNome.getText());
@@ -308,7 +308,6 @@ JOptionPane.showMessageDialog(null, e);
 
         btnMaisInformacoes.setBackground(new java.awt.Color(109, 203, 230));
         btnMaisInformacoes.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
-        btnMaisInformacoes.setForeground(new java.awt.Color(0, 0, 0));
         btnMaisInformacoes.setText("Mais informações");
         btnMaisInformacoes.setToolTipText("Mostra as notas do aluno");
         btnMaisInformacoes.addActionListener(new java.awt.event.ActionListener() {
@@ -441,7 +440,8 @@ JOptionPane.showMessageDialog(null, e);
                     .addComponent(btnAddAluno)
                     .addComponent(btnPesqAluno)
                     .addComponent(btnAttAluno)
-                    .addComponent(btnDeleteAluno)))
+                    .addComponent(btnDeleteAluno))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -452,7 +452,9 @@ JOptionPane.showMessageDialog(null, e);
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
